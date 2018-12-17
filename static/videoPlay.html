@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>医界网视频播放</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="https://open.ys7.com/sdk/js/1.3/ezuikit.js"></script>
+   <style type="text/css">
+	body {
+			background-color: lightblue; 
+			background: url(img/b.jpg);
+			background-position: center;
+	    background-repeat: no-repeat;
+	    background-attachment: fixed;
+    }
+	table {
+		BORDER-COLLAPSE: collapse;
+		border-style:dotted;
+		border-color:#7CCD7C;
+	}
+	.bg-box{
+		width: 100%; position: relative; 
+	}
+	.bot-box{
+		position: absolute; top: 450px; left: 243px;
+	}
+	.bot-box input[type="button"]{
+		width: 149px;
+		height: 45px;
+		box-shadow: 0px 0px 1px 0px rgba(0, 82, 131, 0.75);
+		background-color: #2696DC;
+		color: #fff;
+		border: none;
+		border-radius: 5px;
+		font-size: 18px;
+		cursor: pointer;
+	}
+	.bot-box input[type="button"]:hover{
+		background-color: #59B0DD;
+	}
+	#EZUIKit{
+		/*position: absolute; top: 335px; left: 621px;*/
+	}
+	#play-box{
+		/*width: 677px; margin: 0 auto; position: absolute; top: 338px; left: 622px;*/
+		background: url(img/a.png); background-repeat: no-repeat; width: 716px; height: 463px; margin: 12rem auto 0; position: relative;
+	}
+	
+	#myPlayer{
+		width: 677px; height: 415px; position: relative; left: 19px; top: 12px;
+	}
+  </style>
+
+<!--679*328-->
+
+  </head>
+ <body>
+ 	
+ 	<div class="bg-box">
+ 		
+ 		<div id="play-box">
+ 			<video id="myPlayer" poster="" controls autoplay>
+				<source src=""/>
+			</video>
+ 		</div>
+ 		
+ 	</div>
+<script>
+
+	$(document).ready(function(){
+
+	 var src = GetQueryString("videoUrl")
+	 $("#myPlayer > source").attr("src",src); 
+	 var player = new EZUIPlayer('myPlayer');
+	 
+	 function GetQueryString(name){
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+	     if(r!=null)return  unescape(r[2]); return null;
+		}
+	
+});
+
+	</script>
+
+
+
+</body>
+</html>

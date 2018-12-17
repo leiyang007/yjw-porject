@@ -1,0 +1,46 @@
+// see http://vuejs-templates.github.io/webpack for documentation.
+var path = require('path')
+
+module.exports = {
+  build: {
+    env: require('./prod.env'),
+    index: path.resolve(__dirname, '../dist_index/index.html'),
+    assetsRoot: path.resolve(__dirname, '../dist_index'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    productionSourceMap: false,
+    // Gzip off by default as many popular static hosts such as
+    // Surge or Netlify already gzip all static assets for you.
+    // Before setting to `true`, make sure to:
+    // npm install --save-dev compression-webpack-plugin
+    productionGzip: false,
+    productionGzipExtensions: ['js', 'css']
+  },
+  dev: {
+    env: require('./dev.env'),
+    //host: 'http://192.168.1.7',
+    port: 83,				//本地开发
+    //port: 81,					//1.2开发
+    //port: 80,					//阿里云开发107
+    autoOpenBrowser: true,
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {
+        //'/api': 'http://192.168.1.5:8080'
+        '/api': {
+			    //target: 'http://192.168.1.2:8080',   //服务器地址
+			    target: 'http://116.62.241.107:8080',	//开发地址
+			    changeOrigin: true,
+			    pathRewrite: {
+			      '^/api': '/'
+			    }
+		  }
+    },
+    // CSS Sourcemaps off by default because relative paths are "buggy"
+    // with this option, according to the CSS-Loader README
+    // (https://github.com/webpack/css-loader#sourcemaps)
+    // In our experience, they generally work as expected,
+    // just be aware of this issue when enabling this option.
+    cssSourceMap: false
+  }
+}
